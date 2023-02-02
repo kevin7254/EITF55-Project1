@@ -13,12 +13,10 @@ public class RabinMiller {
         if (n > 3 && (n % 2 != 0)) {
             int r = 0;
             int s = (n - 1); //Write n-1 = 2^0 * s
-
             while(s % 2 == 0) {
-                r+=1;
-                s /= 2;
+                r++;
+                s = s / 2;
             }
-
             System.out.println("n-1 = 2^" + r + " * " + s);
 
             // pick a random integer a in the range [2, n - 2]
