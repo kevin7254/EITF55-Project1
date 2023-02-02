@@ -1,35 +1,45 @@
+import java.math.BigInteger;
+
 public class RabinMiller {
 
     public RabinMiller() {
     }
 
-    public boolean checkIfComposite(int n) { // Composite = not prime
-        int x;
-        if (n > 3 && (n % 2 != 0)) {
-            int r = 0; // 2^0
-            int s = (n - 1); // write n-1 = 2^0 * s
-            while(s % 2 == 0) {// check if s % 2 ==0, increment r to find out the smallest factor s
-                r++;
-                s = s / 2;
+    public BigInteger checkIfComposite(BigInteger n) { // Composite = not prime
+        BigInteger res = n;
+        BigInteger bigX;
+        if (!((n.mod(new BigInteger("2"))).equals(new BigInteger("0")))) {
+            BigInteger r = new BigInteger("0"); // 2^0
+            BigInteger s = n.subtract(new BigInteger("1")); // write n-1 = 2^0 * s
+            while ((s.mod(new BigInteger("2"))).equals(new BigInteger("0"))){// check if s % 2 ==0, increment r to find out the smallest factor s
+                r = r.add(new BigInteger("1"));
+                s = s.divide(new BigInteger("2"));
+
             }
-            System.out.println("n-1 = 2^" + r + " * " + s);
 
             // pick a random integer a in the range [2, n - 2]
-            int a = (int) (Math.random() * (n - 4)) + 2;
-            System.out.println("a = " + a);
+            //BigInteger random = new BigInteger(n.bitLength(), new java.util.Random());
+            BigInteger a = new BigInteger("2");
 
-            x = (int) Math.pow(a, s) % n;
-            System.out.println("x = " + x);
+            BigInteger temp = a;
+            bigX = temp.modPow(s, n);
 
-            if(x == 1 || x == (n - 1)) return false; // Probably Prime
+            if (bigX.equals(BigInteger.valueOf(1)) || bigX.equals(n.subtract(BigInteger.valueOf(1))))
+                return res; // Probably Prime
 
-            for(int j = 1; j<= (r-1);j++) {
-                x = (int) Math.pow(x, 2) % n;
-                System.out.println("x = " + x);
-                if(x == 1) return true; // Composite
-                if(x == (n - 1)) return false; // Probably Prime
+            for (int j = 1; j <= r.intValue() - 1; j++) {
+                //Alternative 1
+                BigInteger bigA1 = bigX.pow(2);
+                bigA1 = bigA1.mod(n);
+
+                //Alternative 2
+                //int i = (int) Math.round(Math.pow(2, j) * s);
+                // BigInteger bigA2 = bigA.pow(i);
+                //System.out.println("x: " + x);
+                if (bigA1.equals(BigInteger.valueOf(1))) return null; // Composite
+                if (bigA1.equals(n.subtract(BigInteger.valueOf(1)))) return res; // Probably Prime
             }
         }
-        return true; // Composite
+        return null; // Composite
     }
 }
