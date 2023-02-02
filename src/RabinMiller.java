@@ -15,7 +15,8 @@ public class RabinMiller {
             System.out.println("n-1 = 2^" + r + " * " + s);
 
             // pick a random integer a in the range [2, n - 2]
-            int a = (int) (Math.random() * (n - 4)) + 2;
+            //int a = (int) (Math.random() * (n - 4)) + 2;
+            int a =2;
             System.out.println("a = " + a);
 
             x = (int) Math.pow(a, s) % n;
@@ -25,7 +26,10 @@ public class RabinMiller {
 
             for(int j = 1; j<= (r-1);j++) {
                 x = (int) Math.pow(x, 2) % n;
-                System.out.println("x = " + x);
+                System.out.println(x);
+                x = (int) (Math.pow(a, Math.pow(2, j)*s) % n);
+                System.out.println(x);
+
                 if(x == 1) return true; // Composite
                 if(x == (n - 1)) return false; // Probably Prime
             }
