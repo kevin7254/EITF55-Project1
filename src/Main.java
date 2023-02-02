@@ -56,11 +56,24 @@ public class Main {
             System.out.println(inverse.algorithm(new BigInteger("8"), new BigInteger("5")));
             System.out.println(inverse.algorithm(new BigInteger("15"), new BigInteger("9")));
 
+            BigInteger p = new BigInteger("8396256305097038999635256212089884981530394099906140493350945987024380991475879049687351465586141395239672922402620271122951794002504747423174474757914887");
+            BigInteger q = new BigInteger("2896660929138039314506773379106703725808659510273801341600541083601687547847610760020351611132508924296522771588376198104627460847204831488292757187828521");
 
-            System.out.println(inverse.algorithm(new BigInteger("8396256305097038999635256212089884981530394099906140493350945987024380991475879049687351465586141395239672922402620271122951794002504747423174474757914887"),
-             new BigInteger("65537")));
-            System.out.println(inverse.algorithm(new BigInteger("2896660929138039314506773379106703725808659510273801341600541083601687547847610760020351611132508924296522771588376198104627460847204831488292757187828521"),
-             new BigInteger("65537")));
+            System.out.println(inverse.algorithm(p, new BigInteger("65537")));
+            System.out.println(inverse.algorithm(q, new BigInteger("65537")));
 
+            BigInteger mul = p.multiply(q);
+
+            System.out.println(mul);
+
+            BigInteger s = new BigInteger("6969420");
+
+            BigInteger c = s.pow(65537).mod(mul);
+
+            System.out.println("c:" + c);
+
+            BigInteger z = c.pow(1).mod(mul);
+
+            System.out.println("z:" + z);
     }
 }

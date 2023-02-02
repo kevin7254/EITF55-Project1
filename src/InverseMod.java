@@ -34,9 +34,6 @@ public class InverseMod {
         d=d1;
 
         System.out.println("d is: " + d +" \nv is: " + v);
-        if (d.equals("1")){
-            return d;
-        }
         return d;
     }
 }
