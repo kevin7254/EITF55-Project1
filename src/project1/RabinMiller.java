@@ -1,3 +1,4 @@
+package project1;
 import java.math.BigInteger;
 
 public class RabinMiller {
@@ -17,11 +18,11 @@ public class RabinMiller {
 
             }
 
-            // pick a random integer a in the range [2, n - 2]
-            //BigInteger random = new BigInteger(n.bitLength(), new java.util.Random());
-            BigInteger a = new BigInteger("2");
+             //pick a random integer a in the range [2, n - 2]
+            BigInteger random = new BigInteger(n.bitLength(), new java.util.Random());
+           
 
-            BigInteger temp = a;
+            BigInteger temp = random;
             bigX = temp.modPow(s, n);
 
             if (bigX.equals(BigInteger.valueOf(1)) || bigX.equals(n.subtract(BigInteger.valueOf(1))))

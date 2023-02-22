@@ -1,3 +1,4 @@
+package project1;
 import java.math.BigInteger;
 
 public class Main {
@@ -44,7 +45,6 @@ public class Main {
             BigInteger random = new BigInteger(512, new java.util.Random());
             BigInteger res = rabinMiller.checkIfComposite(random);
             if (res != null) {
-                System.out.println(res);
                 i++;
             }
         }
@@ -59,21 +59,26 @@ public class Main {
             BigInteger p = new BigInteger("8396256305097038999635256212089884981530394099906140493350945987024380991475879049687351465586141395239672922402620271122951794002504747423174474757914887");
             BigInteger q = new BigInteger("2896660929138039314506773379106703725808659510273801341600541083601687547847610760020351611132508924296522771588376198104627460847204831488292757187828521");
 
-            System.out.println(inverse.algorithm(p, new BigInteger("65537")));
-            System.out.println(inverse.algorithm(q, new BigInteger("65537")));
+            BigInteger m = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
 
+            System.out.println("Inverse of p is  " + inverse.algorithm(p, m));
+            System.out.println("Invers of q is " +inverse.algorithm(q, m));
+
+
+
+            System.out.println("\n Assignment 5 tests \n" );
             BigInteger mul = p.multiply(q);
 
-            System.out.println(mul);
+            System.out.println("MUl is " +mul);
 
             BigInteger s = new BigInteger("6969420");
 
             BigInteger c = s.pow(65537).mod(mul);
 
-            System.out.println("c:" + c);
+            System.out.println("\nc:" + c);
 
             BigInteger z = c.pow(1).mod(mul);
 
-            System.out.println("z:" + z);
+            System.out.println("\nz:" + z);
     }
 }

@@ -1,3 +1,4 @@
+package project1;
 import java.math.BigInteger;
 
 public class InverseMod {
@@ -29,12 +30,13 @@ public class InverseMod {
             v1 = v1.add(m);
         }
         
-        
         v=v1;
         d=d1;
-
-        System.out.println("d is: " + d +" \nv is: " + v);
-        return d;
+        
+        if (d.equals("1")){
+            return v;
+        }
+        return v;
     }
 }
 
